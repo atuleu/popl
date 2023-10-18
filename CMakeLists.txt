@@ -9,6 +9,14 @@
 # This software may be modified and distributed under the terms
 # of the MIT license.  See the LICENSE file for details.
 
+if(NOT CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+    # we are externally included via ExternalProject / FetchContent
+    add_library(popl::popl INTERFACE IMPORTED GLOBAL)
+    target_include_directories(popl::popl INTERFACE include)
+
+    return()
+endif(NOT CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+
 cmake_minimum_required(VERSION 2.4) 
 
 if (CMAKE_VERSION VERSION_LESS "3.1")
